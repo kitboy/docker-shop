@@ -1,20 +1,20 @@
 <?php
 // database host
-$db_host   = "localhost:3306";
+$db_host   = "mysql:3306";
 
 // database name
-$db_name   = "caches";
+$db_name   = "ecshop";
 
 // database username
-$db_user   = "root";
+$db_user   = "huiyee";
 
 // database password
-$db_pass   = "root";
+$db_pass   = "huiyee";
 
 // table prefix
 $prefix    = "ecs_";
 
-$timezone    = "PRC";
+$timezone    = "Asia/Hong_Kong";
 
 $cookie_path    = "/";
 
@@ -32,6 +32,6 @@ define('OLD_AUTH_KEY', '');
 
 define('API_TIME', '');
 
-define('STORE_KEY','753e8a2cac6fe6cd82ed5b2d5da3559b');
+define('STORE_KEY','10bd457152ca8535001d086a03535c01');
 
 ?>

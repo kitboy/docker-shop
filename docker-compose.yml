@@ -1,41 +1,70 @@
 version: "3"
 services:
-  web:
-    # replace username/repo:tag with your name and image details
-    image: kitboy/test:tag
+  redis:
+    image: redis:alpine
+    expose:
+      - "6379"
+    volumes:
+      - //docker/configs/redis/redis.conf:/usr/local/etc/redis/redis.conf
+  memcached:
+    image: memcached:alpine
+    expose:
+      - "11211"
+  mysql:
+    image: mysql
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ecshop
+      - MYSQL_USER=huiyee
+      - MYSQL_PASSWORD=huiyee
+    volumes:
+      - //docker/configs/mysql:/etc/mysql/conf.d
+      - db-data:/var/lib/mysql
     deploy:
-      replicas: 5
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
+      placement:
+        constraints: [node.role == manager]
+    expose:
+      - "3306"
+    networks:
+      - ecshop
+    restart: unless-stopped
+  phpfpm:
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    image: phpfpm-mysql:v1.0
+    volumes:
+      - //docker/html:/var/www/html
+      - //docker/configs/php:/var/lib/php
+    links:
+      - mysql:mysql
+      - redis:redis
+      - memcached:memcached
+    expose:
+      - "9000"
+    networks:
+      - ecshop
+    restart: unless-stopped
+  nginx:
+    image: nginx:alpine
+    depends_on:
+      - mysql
+      - phpfpm
+    volumes:
+      - //docker/html:/var/www/html
+      - //docker/configs/nginx:/etc/nginx/conf.d
+    links:
+      - phpfpm:phpfpm
+    expose:
+      - "80"
     ports:
       - "80:80"
     networks:
-      - webnet
-  visualizer:
-    image: dockersamples/visualizer:stable
-    ports:
-      - "8080:8080"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    deploy:
-      placement:
-        constraints: [node.role == manager]
-    networks:
-      - webnet
-  redis:
-    image: redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - ./data:/data
-    deploy:
-      placement:
-        constraints: [node.role == manager]
-    networks:
-      - webnet
+      - ecshop
+    restart: unless-stopped
 networks:
-  webnet:
+  ecshop:
+    driver: bridge
+volumes:
+  db-data:
+    driver: local
