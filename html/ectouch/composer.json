@@ -1,0 +1,18 @@
+{
+    "name": "ectouch/ectouch",
+    "description": "ECTouch Open-Source E-Commerce System.",
+    "keywords": ["ectouch", "shop", "mall", "wechat", "b2c"],
+    "homepage": "https://www.ectouch.cn/",
+    "license": "GPL",
+    "type": "project",
+    "support": {
+        "issues": "https://github.com/ectouch/ectouch/issues?state=open",
+        "forum": "https://www.ectouch.cn/forum/",
+        "wiki": "https://www.ectouch.cn/wiki/",
+        "source": "https://github.com/ectouch/ectouch"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6.4"
+    }
+}
