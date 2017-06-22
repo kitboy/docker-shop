@@ -4,12 +4,16 @@ services:
     image: redis:alpine
     expose:
       - "6379"
-    volumes:
-      - //docker/configs/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    # volumes:
+    #   - //docker/configs/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - ecshop
   memcached:
     image: memcached:alpine
     expose:
       - "11211"
+    networks:
+      - ecshop
   mysql:
     image: mysql
     environment: 

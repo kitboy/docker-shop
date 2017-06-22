@@ -1,0 +1,67 @@
+{include file="header.html"}
+<style type="text/css">
+
+
+#rightCon {border-top: 1px solid #b0d3ee; padding: 10px 10px 60px; background: #fbfdff; margin-left: 2px; overflow: hidden;}
+#rightCon dt {line-height: 30px; font-size: 14px; color: #09f; font-weight: bold; padding: 10px 40px 0;}
+#rightCon dd {border-bottom: 1px solid #b0d3ee; line-height: 25px; padding: 0 40px 20px;}
+#rightCon dd th {text-align: left; width:220px; color: #444;}
+.td {width: 200px; padding-left: 20px;}
+#rightCon .thbig{text-align: left; width: 100%; color: #444;font-size:12px; font-weight:normal}
+
+</style>
+
+
+
+<div id="rightTop">
+<p>
+   {$lang.license}
+</p>
+</div>
+
+<dl id="rightCon">
+
+<dt>{$lang.license_describe}</dt>
+<dd>
+    <table>
+        <tr>
+            <th class='thbig'><b>{$lang.commercial-Title}</b>{$lang.commercial_license_describe}</th>
+        </tr>
+        <tr>
+            <th class='thbig'><b>{$lang.commonly-Title}</b>{$lang.commonly_license_describe}</th>
+        </tr>
+    </table>
+</dd>
+
+
+
+<dt>{$lang.license}</dt>
+<dd>
+    <table>
+        <tr>
+            <th>{$lang.license_number}:</th>
+            <td class="td">{$license_number}</td>
+            <th>&nbsp</th>
+            <td class="td">{if $is_license} {$lang.commercial_license}{else}<a href="http://ecmall.shopex.cn" target="_blank">{$lang.commonly_license}</a>{/if}</td>
+        </tr>
+    </table>
+</dd>
+<dt></dt>
+<dd>
+<form action="index.php?app=license&act=l_det"  method="post">
+    <table width="712">
+        <tr>
+             <td width="425" >{$lang.get_license}</td>
+          <th width="114"><input type="submit" value="{$lang.delete}" name="Submit" class="formbtn" /></th>
+        </tr>
+        <tr>
+             <td class="td"></td>
+            <th></th>
+        </tr>
+    </table>
+ </form>  
+</dd>
+
+
+</dl>
+{include file="footer.html"}
