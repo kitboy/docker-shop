@@ -18,6 +18,10 @@ if (!defined('IN_ECS'))
     die('Hacking attempt');
 }
 
+
+date_default_timezone_set('Asia/Hong_Kong');
+
+
 /**
  * 获得GD的版本号
  *

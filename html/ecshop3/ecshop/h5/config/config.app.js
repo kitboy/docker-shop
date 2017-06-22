@@ -1,5 +1,5 @@
 var GLOBAL_CONFIG = {
-	'API_HOST': 'https://api.ecshop36.geek-zoo.net',
+	'API_HOST': 'http://api.ecshop',
 	'APP_NAME': 'Demo',
 	'APP_DESC': 'This is a demo',
 	'APP_KEYWORDS': 'Demo, Shop',
